@@ -23,8 +23,8 @@
 
 ## 三、リンク集
 
-Discord:[https://discord.com/channels/1288747521568407562](https://discord.com/channels/1288747521568407562)
-Miro:[https://miro.com/app/board/uXjVLY-V_xw=/](https://miro.com/app/board/uXjVLY-V_xw=/)
+- Discord:[https://discord.com/channels/1288747521568407562](https://discord.com/channels/1288747521568407562)
+- Miro:[https://miro.com/app/board/uXjVLY-V_xw=/](https://miro.com/app/board/uXjVLY-V_xw=/)
 
 ## 編集記録
 
@@ -36,4 +36,5 @@ Miro:[https://miro.com/app/board/uXjVLY-V_xw=/](https://miro.com/app/board/uXjVL
 ----
 
 何かあったら、Issuesかメールにて連絡してください。メールアオドレス：12347048@stdt.tamabi.ac.jp
+ 
 編集者@チョウテイ
