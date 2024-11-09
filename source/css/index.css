@@ -1,0 +1,173 @@
+/* 基本设置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  padding-top: 86px;
+}
+
+/* 导航栏样式 */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 86px;
+  background-color: white;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1000;
+  border-bottom: 1px solid #ccc;
+}
+
+.navbar h1 a {
+  color: #333;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+/* 导航栏内导航项样式 */
+.navbar nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+}
+
+.navbar nav ul li {
+  background-color: gray;
+  border-radius: 5px;
+  margin-left: 15px;
+}
+
+.navbar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 20px;
+  display: block;
+}
+
+/* 主内容区域 */
+main {
+  padding: 20px;
+  max-width: 1280px;
+  margin: auto;
+}
+
+/* キャッチコピー部分 */
+.catchcopy {
+  height: 720px;
+  background-image: url('../assets/img/home/main.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* 信息设计描述区域 */
+.info-design-description {
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-design-description h2 {
+  font-size: 28px;
+  margin: 60px 0;
+}
+
+.info-design-description h3 {
+  font-size: 24px;
+  font-family: 'Noto Sans', sans-serif;
+  margin: 0;
+  text-align: left;
+}
+
+.info-design-description ol {
+  list-style: none;
+  width: 600px;
+  padding: 0;
+  counter-reset: li-counter;
+}
+
+.info-design-description li {
+  position: relative;
+  width: 600px;
+  height: 114px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 57px auto;
+  padding-left: 80px;
+}
+
+.info-design-description li::before {
+  content: counter(li-counter);
+  counter-increment: li-counter;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 64px;
+  height: 64px;
+  background-color: blue;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.info-design-description p {
+  font-size: 16px;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 300;
+  margin: 0;
+  text-align: left;
+}
+
+/* discover 样式 */
+.discover {
+  background-color: yellow;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* footer 样式 */
+footer {
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 10px;
+  }
+  .info-design-description ol {
+    width: 100%;
+  }
+  .info-design-description li {
+    padding-left: 60px;
+  }
+  .info-design-description li::before {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+}
