@@ -1,3 +1,7 @@
+html[lang="ja"] {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
 /* 基本设置 */
 * {
   margin: 0;
@@ -34,7 +38,6 @@ body {
   font-size: 24px;
 }
 
-/* 导航栏内导航项样式 */
 .navbar nav ul {
   list-style: none;
   display: flex;
@@ -57,9 +60,8 @@ body {
 
 /* 主内容区域 */
 main {
-  padding: 20px;
-  max-width: 1280px;
-  margin: auto;
+  padding: 0;
+  margin: 0;
 }
 
 /* キャッチコピー部分 */
@@ -68,6 +70,16 @@ main {
   background-image: url('../assets/img/home/main.png');
   background-size: cover;
   background-position: center;
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  text-align: center;
+}
+
+.catchcopy p {
+  font-size: 38px;
+  font-family: "Noto Sans JP", sans-serif;
+  color: white;
 }
 
 /* 信息设计描述区域 */
@@ -77,6 +89,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 100px;
 }
 
 .info-design-description h2 {
@@ -148,10 +161,42 @@ main {
   text-align: center;
 }
 
-/* footer 样式 */
-footer {
+.discover p {
+  font-size: 28px;
+  font-family: 'Noto Sans', sans-serif;
+  color: #333;
   text-align: center;
-  padding: 20px 0;
+  margin: 0 auto 20px;
+  width: fit-content;
+}
+
+/* haken 样式 */
+.haken {
+  width: 961px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../assets/img/home/main.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* 見ページへ按钮样式 */
+.haken button {
+  width: 340px;
+  padding: 10px 0;
+  background-color: black;
+  color: white;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+footer{
+  text-align: center;
 }
 
 /* 响应式优化 */
