@@ -12,8 +12,12 @@ html[lang="ja"] {
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  color: #333;
+  color: #d0d0d0;
   padding-top: 86px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px;
 }
 
 /* 导航栏样式 */
@@ -67,7 +71,7 @@ main {
 /* キャッチコピー部分 */
 .catchcopy {
   height: 720px;
-  background-image: url('../assets/img/home/main.png');
+  background-image: url("../assets/img/home/main.png");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -99,7 +103,7 @@ main {
 
 .info-design-description h3 {
   font-size: 24px;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   margin: 0;
   text-align: left;
 }
@@ -144,7 +148,7 @@ main {
 
 .info-design-description p {
   font-size: 16px;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-weight: 300;
   margin: 0;
   text-align: left;
@@ -163,7 +167,7 @@ main {
 
 .discover p {
   font-size: 28px;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   color: #333;
   text-align: center;
   margin: 0 auto 20px;
@@ -177,25 +181,12 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('../assets/img/home/main.png');
+  background-image: url("../assets/img/home/main.png");
   background-size: cover;
   background-position: center;
 }
 
-/* 見ページへ按钮样式 */
-.haken button {
-  width: 340px;
-  padding: 10px 0;
-  background-color: black;
-  color: white;
-  font-family: 'Noto Sans', sans-serif;
-  font-size: 18px;
-  border: none;
-  cursor: pointer;
-  text-align: center;
-}
-
-footer{
+footer {
   text-align: center;
 }
 
@@ -217,11 +208,48 @@ footer{
   }
 }
 
-.container{
+.container {
   width: 100%;
   height: 100%;
-  background-color: #333;
-  
+  display: flex;
+  position: relative;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 5rem;
 }
 
+/* 容器内部内容的样式 */
+.container-contents {
+  z-index: 2;
+}
 
+/* 容器内容文字的样式 */
+.container-contents p {
+  font-family: sans-serif;
+  font-size: 2rem;
+  color: #17f700;
+  margin-bottom: 2rem;
+  opacity: 0.2;
+}
+
+.animation-box {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+}
+
+.test {
+  background-color: #333;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
