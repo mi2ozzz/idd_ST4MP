@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('assets/lib.csv')
+        .then(response => response.text())
+        .then(data => {
+            // 将CSV数据解析为数组
+            const rows = data.split('\n').map(row => row.split(','));
+            let idArray = [];
+            
+            // 跳过第一行标题行，从第二行开始
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                const id = i ;
+                const title = row[1];
+                const subtitle = row[2];
+                const content = row[3];
+                const tags = row[6];
+                idArray.push({ id, title, subtitle, content, tags });
+            }
+            
+            // 确保选择到 `.container-item p` 元素
+            const container = document.querySelector('.container-item p');
+            if (!container) {
+                console.error('Error: .container-item p element not found');
+                return;
+            }
+
+            // 将内容添加到 `container-item` 的 `<p>` 元素中
+            idArray.forEach(item => {
+                const itemHtml = `
+                    <p>ID: ${item.id}</p>
+                    <p>Title: ${item.title}</p>
+                    <p>Subtitle: ${item.subtitle}</p>
+                    <p>Content: ${item.content}</p>
+                    <p>Tags: ${item.tags}</p>
+                `;
+                container.innerHTML += itemHtml;
+            });
+        })
+        .catch(error => console.error('Error reading the CSV file:', error));
+});
+
+    </script>
+
+    
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ST4MP Service</title>
+    <meta name="description" content="情報デザインとは何か">
+    <meta name="keywords" content="情報デザイン,情報デザインの歴史,デザイン情報">
+    <!-- <link rel="stylesheet" href="css/styles.css"> -->
+    
+</head>
+<body>
+    <header class="navbar">
+        <!-- ページの名前 -->
+        <h1><a href="#">Service Name</a></h1>
+
+        <!-- ナビゲーションバー開始 -->
+        <nav>
+            <ul>
+                <li><a href="#">発見ページ</a></li>
+                <li><a href="#">情報デザインの歴史</a></li>
+                <li><a href="#">サイトについて</a></li>
+            </ul>
+        </nav>
+        <!-- ナビゲーションバー終了 -->
+    </header>
+
+    <!-- map -->
+    <main>
+        <div class="container">
+            <div class="container-item">
+                <!-- <div class="pic"><img src="assets/img/map/a.png"></div> -->
+                <!-- <div class="title">title</div> -->
+                <!-- <div class="content">content</div> -->
+                <!-- <div class="tags">tags</div> -->
+                <p></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 ST4MP</p>
+    </footer>
+    
+
+
+</body>
+</html>
