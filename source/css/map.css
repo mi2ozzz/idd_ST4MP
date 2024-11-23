@@ -4,10 +4,19 @@
   padding: 0;
 }
 
+:root {
+  --item-width: 420px;
+  --item-height: 400px;
+}
+
 .body {
   margin: 0;
   width: 100%;
   height: auto;
+}
+
+ul {
+  list-style-type: none;
 }
 
 .container {
@@ -19,20 +28,23 @@
   flex-wrap: wrap; /* 容器内的元素允许换行 */
   justify-content: center; /* 元素水平居中 */
   align-items: center; /* 元素垂直居中 */
-  gap: 10px; /* 元素之间的间隙 */
   padding: 80px 20px;
   border: 1px solid #e0e0e0; /* 边框颜色 */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
   border-radius: 10px; /* 圆角效果 */
   overflow: hidden; /* 隐藏溢出内容 */
   cursor: grab; /* 鼠标指针为抓手，表示可以拖动 */
-  width: 6000px; /* 设置容器宽度为2000px */
+  width: 200vw; /* 设置容器宽度为2000px */
   height: auto;
 }
 
 .container-item {
-  width: 420px;
-  height: 400px;
+  width: 18vw;
+  height: 30vh;
+  min-width: 220px;
+  min-height: 400px;
+  max-width: 420px;
+  /* height: auto; */
   border-radius: 50px;
   margin: 30px 10px;
   background-color: #fff;
@@ -56,9 +68,7 @@
   color: #181818;
   margin: 0 10px;
 }
-.item-tags {
-  list-style-type: none;
-}
+
 .container-item h2 {
   font-size: 18px;
 }
@@ -80,24 +90,103 @@
   top: 50%; /* 垂直居中 */
   left: 50%; /* 水平居中 */
   transform: translate(-50%, -50%); /* 调整位置，使其完全居中 */
-  width: 1000px; /* 弹窗宽度 */
-  height: 600px; /* 弹窗高度 */
+  width: 80vw; /* 弹窗宽度 */
+  height: 70vh; /* 弹窗高度 */
+  max-width: 1800px;
+  min-height: 500px;
+
   background-color: #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* 弹窗阴影 */
   border-radius: 10px; /* 圆角效果 */
   z-index: 1000; /* 确保弹窗在最上层 */
   display: none; /* 初始时隐藏弹窗 */
-  flex-direction: column; /* 使用列布局 */
-  align-items: center; /* 垂直居中 */
-  justify-content: center; /* 水平居中 */
-  text-align: center; /* 文字居中 */
+  flex-direction: row; /* 使用列布局 */
+
   padding: 20px;
+
+  color: #181818;
 }
 
+.item-show-content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.item-show-pic {
+  display: flex;
+  width: 2000px;
+  margin: 0 10px 0 0;
+  text-align: center; /* 水平居中 */
+  margin: 0 10px 0 0;
+  justify-content: center; /* 垂直居中 */
+  align-items: center; /* 垂直居中 */
+}
+.item-show-pic img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.item-show-data {
+  width: 1000px;
+  display: grid;
+  height: auto;
+}
+.item-show-text {
+  margin: 25px;
+}
+
+.item-show-text p,
+h2 {
+  margin: 10px 0;
+}
+.item-show-info {
+  height: auto;
+  align-self: end; /* 将子元素放置在底部 */
+  text-align: center;
+}
+
+.item-show-tags {
+  background-color: #0053e1;
+  border-radius: 10px;
+  color: #f5f5f5;
+  padding-left: 7px;
+}
 footer {
   width: 100%;
   position: fixed;
   text-align: center;
   bottom: 0;
   color: #181818;
+}
+
+/* @media screen and (max-width: 800px) {
+  .container-item {
+    width: calc(var(--item-width) / 2); */
+/* height: calc(var(--item-height) / 2); */
+/* height: auto;
+  }
+} */
+
+@media screen and (max-width: 800px) {
+  .item-show-content {
+    flex-direction: column; /* 当屏幕宽度小于或等于800px时，切换为垂直布局 */
+  }
+
+  .item-show-pic {
+    max-width: 100%;
+    min-height: 20%;
+    max-height: 50%;
+    margin: 0 0 10px 0;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+  }
+  .item-show-data {
+    width: 100%;
+    font-size: 90%;
+  }
+
+  .item-show-info {
+    display: none;
+  }
 }
