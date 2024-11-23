@@ -17,8 +17,6 @@
 ## 二、開発においてのスタイルガイド
 
 　「構造設計」課題のWeb開発においては、以下のスタイルガイドに基づいて開発を行います。
- 
-=======
 
 - Google HTML/CSS Style Guide　[和訳](docs/guidelines/rule-style-guide.md)|[英語](https://google.github.io/styleguide/htmlcssguide.html)
 - Google JavaScript Style Guide　[和訳](https://cou929.nu/data/google_javascript_style_guide/)|[英語](https://google.github.io/styleguide/jsguide.html)
@@ -35,8 +33,10 @@
 
 > [09/29]github倉庫作り出した
 >
->
 > [10/15]フォーマットフォルダーとREADME.md内容を追加した
+>
+> [11/23]bransh配置/html&css&js基礎の部分を実装した
+> 
 
 ---
 
