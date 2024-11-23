@@ -1,53 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        fetch("../assets/lib.csv")
-          .then((response) => response.text())
-          .then((data) => {
-            // 将CSV数据解析为数组
-            const rows = data.split("\n").map((row) => row.split(","));
-            let idArray = [];
-
-            // 跳过第一行标题行，从第二行开始
-            for (let i = 1; i < rows.length; i++) {
-              const row = rows[i];
-              const id = i;
-              const title = row[1];
-              const subtitle = row[2];
-              const content = row[3];
-              const tags = row[6];
-              idArray.push({ id, title, subtitle, content, tags });
-            }
-
-            // 确保选择到 `.container` 容器
-            const container = document.querySelector(".container");
-            if (!container) {
-              console.error("Error: .container element not found");
-              return;
-            }
-
-            // 为每行数据生成一个新的 `container-item` 元素
-            idArray.forEach((item) => {
-              const itemDiv = document.createElement("div");
-              itemDiv.classList.add("container-item");
-
-              const itemHtml = `
-          <img src="../assets/img/map/a.png" height="70%" width="100%">
-          <h2>${item.title}</h2>
-          <p>${item.subtitle}</p>
-          <ul><li>${item.tags}</li></ul>
-        `;
-              itemDiv.innerHTML = itemHtml;
-              container.appendChild(itemDiv);
-            });
-          })
-          .catch((error) =>
-            console.error("Error reading the CSV file:", error)
-          );
-      });
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -64,14 +17,14 @@
   <body>
     <header class="navbar">
       <!-- ページの名前 -->
-      <h1><a href="#">IDtree</a></h1>
+      <h1><a href="../index.html">IDtree</a></h1>
 
       <!-- ナビゲーションバー開始 -->
       <nav>
         <ul>
           <li class="nav-button-active"><a href="#">発見ページ</a></li>
-          <li class="nav-button"><a href="#">情報デザインの歴史</a></li>
-          <li class="nav-button"><a href="#">サイトについて</a></li>
+          <li class="nav-button"><a href="history.html">情報デザインの歴史</a></li>
+          <li class="nav-button"><a href="credit.html">サイトについて</a></li>
         </ul>
       </nav>
       <!-- ナビゲーションバー終了 -->
@@ -87,4 +40,6 @@
       <p>&copy; 2024 ST4MP</p>
     </footer>
   </body>
+
+  <script src="../js/map.js"></script>
 </html>
