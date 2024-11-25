@@ -23,18 +23,18 @@ ul {
   flex-direction: row;
   flex-wrap: wrap;
   background-color: #f5f5f5;
-  position: absolute; /* 定位容器，便于拖动 */
-  display: flex; /* 使用 Flexbox 布局 */
-  flex-wrap: wrap; /* 容器内的元素允许换行 */
-  justify-content: center; /* 元素水平居中 */
-  align-items: center; /* 元素垂直居中 */
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   padding: 80px 20px;
   border: 1px solid #e0e0e0; /* 边框颜色 */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
-  border-radius: 10px; /* 圆角效果 */
-  overflow: hidden; /* 隐藏溢出内容 */
-  cursor: grab; /* 鼠标指针为抓手，表示可以拖动 */
-  width: 200vw; /* 设置容器宽度为2000px */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: grab;
+  width: 200vw;
   height: auto;
 }
 
@@ -48,20 +48,20 @@ ul {
   border-radius: 50px;
   margin: 30px 10px;
   background-color: #fff;
-  text-align: center; /* 文字居中 */
-  align-items: center; /* 元素垂直居中 */
-  justify-content: center; /* 元素水平居中 */
-  font-size: 1em; /* 字体大小 */
-  color: #333; /* 文字颜色 */
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  color: #333;
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s,
-    border-color 0.3s; /* 设置过渡效果 */
-  box-shadow: 0 2px 8px rgba(0, z0, 0, 0.05); /* 添加阴影效果 */
-  cursor: pointer; /* 鼠标指针变为手形 */
+    border-color 0.3s;
+  box-shadow: 0 2px 8px rgba(0, z0, 0, 0.05);
+  cursor: pointer; /* マウス */
 }
 
 .container-item:hover {
-  transform: translateY(-5px); /* 向上移动 5px */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 增加阴影 */
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .item-text {
@@ -81,29 +81,22 @@ ul {
   color: #f5f5f5;
 }
 
-/* .item-pic {
-  border-radius: 60px;
-} */
-/* 弹窗样式 */
 #item-show {
-  position: fixed; /* 固定在页面上 */
-  top: 50%; /* 垂直居中 */
-  left: 50%; /* 水平居中 */
-  transform: translate(-50%, -50%); /* 调整位置，使其完全居中 */
-  width: 80vw; /* 弹窗宽度 */
-  height: 70vh; /* 弹窗高度 */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 真ん中 */
+  width: 80vw;
+  height: 70vh;
   max-width: 1800px;
   min-height: 500px;
-
   background-color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* 弹窗阴影 */
-  border-radius: 10px; /* 圆角效果 */
-  z-index: 1000; /* 确保弹窗在最上层 */
-  display: none; /* 初始时隐藏弹窗 */
-  flex-direction: row; /* 使用列布局 */
-
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  z-index: 1000;
+  display: none;
+  flex-direction: row;
   padding: 20px;
-
   color: #181818;
 }
 
@@ -117,10 +110,10 @@ ul {
   display: flex;
   width: 2000px;
   margin: 0 10px 0 0;
-  text-align: center; /* 水平居中 */
+  text-align: center;
   margin: 0 10px 0 0;
-  justify-content: center; /* 垂直居中 */
-  align-items: center; /* 垂直居中 */
+  justify-content: center;
+  align-items: center;
 }
 .item-show-pic img {
   max-width: 100%;
@@ -142,7 +135,7 @@ h2 {
 }
 .item-show-info {
   height: auto;
-  align-self: end; /* 将子元素放置在底部 */
+  align-self: end;
   text-align: center;
 }
 
@@ -160,17 +153,10 @@ footer {
   color: #181818;
 }
 
-/* @media screen and (max-width: 800px) {
-  .container-item {
-    width: calc(var(--item-width) / 2); */
-/* height: calc(var(--item-height) / 2); */
-/* height: auto;
-  }
-} */
-
-@media screen and (max-width: 800px) {
+/* レスポンシブデザイン */
+@media screen and (max-width: 768px) {
   .item-show-content {
-    flex-direction: column; /* 当屏幕宽度小于或等于800px时，切换为垂直布局 */
+    flex-direction: column;
   }
 
   .item-show-pic {
@@ -178,8 +164,8 @@ footer {
     min-height: 20%;
     max-height: 50%;
     margin: 0 0 10px 0;
-    justify-content: center; /* 水平居中 */
-    align-items: center; /* 垂直居中 */
+    justify-content: center;
+    align-items: center;
   }
   .item-show-data {
     width: 100%;

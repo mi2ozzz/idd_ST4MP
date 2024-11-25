@@ -65,7 +65,6 @@ body {
   background-color: #c7c5be;
   border-radius: 5px;
   margin-left: 15px;
-  max-height: 80px;
 }
 
 .nav-button-active {
@@ -94,18 +93,25 @@ body {
 main {
   padding: 0;
   margin: 0;
+  width: 100%;
+  height: auto;
 }
 
 /* キャッチコピー様式 */
 .catchcopy {
-  height: 1080px;
+  height: 720px;
+  width: 100%;
   background-image: url("../assets/img/home/main.png");
   background-size: cover;
   background-position: center;
   display: flex;
-  align-items: center; /* 垂直居中 */
-  justify-content: center; /* 水平居中 */
+  align-items: center;
+  justify-content: center;
   text-align: center;
+}
+
+.catchcopy-video {
+  z-index: -1;
 }
 
 .catchcopy p {
@@ -129,7 +135,6 @@ main {
   display: flex;
   position: relative;
   justify-content: center;
-  width: 100%;
   margin-bottom: 5rem;
 }
 
@@ -140,10 +145,8 @@ main {
 
 /* 文字*/
 .container-contents p {
-  font-family: sans-serif;
   font-size: 2rem;
-  color: #17f700;
-  background-color: #0053e1;
+  color: #ffffff00; /* 透明にする */
   margin-bottom: 2rem;
   opacity: 0.2;
 }
@@ -157,9 +160,9 @@ main {
   left: 0;
   top: 0;
   width: 100%;
-  height: 100vh;
-  background-color: #0053e1;
+  height: 100%;
   z-index: 1;
+  margin: 0;
 }
 
 /* 情報デザインの分野について様式 */
@@ -170,6 +173,7 @@ main {
   flex-direction: column;
   align-items: center;
   margin: 100px;
+  color: #181818;
 }
 
 .info-design-description h2 {
@@ -179,6 +183,7 @@ main {
 
 .info-design-description h3 {
   font-size: 24px;
+  font-family: "Noto Sans", sans-serif;
   margin: 0;
   text-align: left;
 }
@@ -188,7 +193,6 @@ main {
   width: 600px;
   padding: 0;
   counter-reset: li-counter;
-  color: #333;
 }
 
 .info-design-description li {
@@ -213,7 +217,7 @@ main {
   width: 64px;
   height: 64px;
   background-color: blue;
-  color: white;
+  color: aliceblue;
   font-size: 24px;
   font-weight: bold;
   display: flex;
@@ -224,6 +228,7 @@ main {
 
 .info-design-description p {
   font-size: 16px;
+  font-family: "Noto Sans", sans-serif;
   font-weight: 300;
   margin: 0;
   text-align: left;
@@ -265,26 +270,20 @@ footer {
 }
 
 /* レスポンシブデザイン */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .navbar {
-    padding: 0 10px;
+    padding: 0 px;
   }
   .info-design-description ol {
     width: 100%;
-  }
-  .info-design-description li {
-    padding-left: 60px;
   }
   .info-design-description li::before {
     width: 50px;
     height: 50px;
     font-size: 20px;
   }
-}
 
-/* 缩放对应 */
-@media screen and (max-width: 800px) {
   .navbar nav ul li a {
-    font-size: 90%;
+    font-size: 50%;
   }
 }
