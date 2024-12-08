@@ -287,3 +287,43 @@ footer {
     font-size: 50%;
   }
 }
+
+/* クレジットページ */
+.credit h2 {
+  width: 112px;
+  height: 58px;
+  font-size: 28px;
+  color: #0053e1;
+  text-align: center;
+  margin-bottom: 105px;/*間違ってるかも*/
+}
+/* 見出しの下線 */
+.credit h2::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  display: inline-block;
+  width: 40px;
+  height: 4px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  border-color: #0053e1;
+  margin: 15px;
+}
+.credit h3 {
+  font-size: 18px;
+  text-align: center;
+}
+.credit p {
+  width: 309px;
+  height: auto;
+  font-size: 16px;
+  text-align: left;
+}
+
+.concept-discription {
+  display: flex;
+  align-items: center;
+  margin-bottom: 255px;
+}
