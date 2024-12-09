@@ -46,7 +46,9 @@
       <!-- ナビゲーションバー開始 -->
       <nav>
         <ul>
-          <li class="nav-button"><a href="pages/map.html">発見ページ</a></li>
+          <li class="nav-button" id="navBttonMap">
+            <a href="pages/map.html">発見ページ</a>
+          </li>
           <li class="nav-button">
             <a href="pages/history.html">情報デザインの歴史</a>
           </li>
@@ -57,14 +59,28 @@
       </nav>
       <!-- ナビゲーションバー終了 -->
     </header>
+    <!-- 中身 -->
     <main>
       <!-- キャッチコピー -->
       <div class="catchcopy">
-        <p>キャッチコピー<br />端的に説明した文章<br />(背景映像)</p>
-        <!-- <div class="catchcopy-video">
-          <video src="assets/img/home/topvideo.mp4"></video> -->
+        <div class="catchcopy-video">
+          <video autoplay muted loop playsinline>
+            <source src="assets/topview.mp4" type="video/mp4" />
+            <source src="assets/topview.webm" type="video/webm" />
+            <source src="assets/topview.ogg" type="video/ogg" />
+            <!-- ビデオ再生できない場合は画像 -->
+            <img src="assets/fallback.png" alt="キャッチコピー画像" />
+          </video>
+          <div class="catchcopy-text">
+            <div>
+              <p>知識の芽を育て</p>
+              <p>情報デザインの理解を深め</p>
+              <p>視野を広げる</p>
+            </div>
+          </div>
         </div>
       </div>
+
       <!-- スクローリング -->
       <div class="container">
         <!-- SVG動画 -->
@@ -172,8 +188,11 @@
       <!-- 最後の発見ページ部分 -->
       <div class="discover">
         <p>情報デザインを発見しよう！！</p>
-        <div class="discover-pic"></div>
-        <button class="" aria-label="発見ページに移動">発見ページへ</button>
+        <a href="pages/map.html"><div class="discover-pic"></div></a>
+
+        <!-- <a href="pages/map.html"
+          ><div class="discover-button">発見ページへ</div></a
+        > -->
       </div>
     </main>
     <!-- クレジット -->

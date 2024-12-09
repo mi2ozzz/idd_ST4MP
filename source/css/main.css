@@ -1,0 +1,242 @@
+/* 全体設定 */
+html, body {
+  height: 100%; /* ビューポート全体を使う */
+  overflow: hidden; /* 縦スクロールを無効化 */
+  margin: 0; /* 余白をゼロに */
+}
+
+body {
+  font-family: "Noto Sans JP", serif;
+  line-height: 1.6;
+  color: #d0d0d0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #f5f5f5;
+  padding-top: 90px; /* ナビゲーションバーの高さに合わせて調整 */
+  margin: 0;
+}
+
+/* ナビゲーションバー - 固定ナビゲーションバー */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 86px; /* ナビゲーションバーの高さ */
+  background-color: white;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1000;
+  border-bottom: 1px solid #ccc;
+  font-weight: 500;
+}
+
+.navbar h1 a {
+  color: #333;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.navbar nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+}
+
+.navbar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 20px;
+  display: block;
+}
+
+.nav-button {
+  background-color: #c7c5be;
+  border-radius: 5px;
+  margin-left: 15px;
+}
+
+.nav-button-active {
+  border-radius: 5px;
+  margin-left: 15px;
+  background-color: #181818;
+}
+
+.nav-button a:hover {
+  animation: button 0.5s;
+  border-radius: 5px;
+  background-color: #0053e1;
+}
+
+@keyframes button {
+  from {
+    background-color: #c7c5be;
+  }
+  to {
+    background-color: #0053e1;
+  }
+}
+
+/* コンテナ設定 (中央寄せとアスペクト比) */
+.container {
+  width: 100%;
+  height: calc(100vh - 90px); /* ナビゲーションバー分を引いた高さ */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* コンテンツを上に寄せる */
+  align-items: center; /* 横方向に中央寄せ */
+  position: relative;
+  padding: 0 20px; /* 左右の余白を狭くする */
+  gap: 15px; /* セクション間のスペースを縮小 */
+  max-width: 1000px; /* 最大幅を1000pxに設定 */
+  margin: 0 auto; /* コンテナを中央揃え */
+  overflow: hidden; /* 横スクロールを無効化 */
+}
+
+/* セクション設定 */
+.section {
+  width: 100%;
+  display: flex;
+  align-items: center; /* セクションの内容を垂直中央揃え */
+  justify-content: center; /* セクションの内容を水平中央揃え */
+  padding: 10px; /* セクション内のパディングを調整 */
+  margin: 0;
+  gap: 15px; /* セクション間の余白を縮小 */
+}
+
+/* セクションタイトル、サブセクション、アイコンセクションのスタイル */
+.section-title, .sub-section, .icon-role-section {
+  width: 100%;
+  padding: 15px; /* 各セクションのパディングを調整 */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  margin-bottom: 15px; /* セクション間に適切なマージン */
+}
+
+/* アイコンとテキストの横並び */
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* アイコンとテキストの間にスペースを追加 */
+  justify-content: flex-start; /* 左寄せ */
+}
+
+.icon-container, .sub-icon-container, .final-icon-container {
+  min-width: 40px;
+  min-height: 40px;
+  width: 40px;
+  height: 40px;
+  background: rgba(254, 243, 53, 1);
+  border-radius: 50%;
+}
+
+.title, .sub-title, .icon-role-title {
+  font-weight: bold;
+  font-size: 22px;
+  color: rgba(0, 0, 0, 1);
+  margin-bottom: 8px;
+}
+
+.description, .sub-description, .icon-role-description {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 1);
+  margin-top: 8px;
+  text-align: left;
+  line-height: 1.5; /* 読みやすくするため行間を広げる */
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+  body {
+    font-size: 12px;
+  }
+
+  .container {
+    height: calc(100vh - 50px); /* ナビゲーションバーの高さを引く */
+    padding: 10px; /* 余白をさらに縮小 */
+  }
+
+  .section-title, .sub-section, .icon-role-section {
+    padding: 10px;
+  }
+
+  .title, .sub-title, .icon-role-title {
+    font-size: 20px;
+  }
+
+  .description, .sub-description, .icon-role-description {
+    font-size: 12px;
+  }
+
+  .icon-container, .sub-icon-container, .final-icon-container {
+    min-width: 35px;
+    min-height: 35px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .navbar {
+    padding: 10px;
+  }
+
+  .navbar nav ul li a {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+}
+
+/* タブレット対応 */
+@media (max-width: 1024px) {
+  body {
+    font-size: 13px;
+  }
+
+  .container {
+    height: calc(100vh - 50px); /* ナビゲーションバーの高さを引く */
+    padding: 18px;
+  }
+
+  .section-title, .sub-section, .icon-role-section {
+    padding: 15px;
+  }
+
+  .title, .sub-title, .icon-role-title {
+    font-size: 22px;
+  }
+
+  .description, .sub-description, .icon-role-description {
+    font-size: 13px;
+  }
+
+  .icon-container, .sub-icon-container, .final-icon-container {
+    min-width: 45px;
+    min-height: 45px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .navbar nav ul li a {
+    font-size: 16px;
+  }
+}
+
+/* フッター */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  background-color: #181818;
+  color: #fff;
+  margin-top: auto; /* フッターを一番下に配置 */
+  width: 100%;
+}

@@ -28,7 +28,8 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 86px;
+  /* height: 40px; */
+  height: 80px;
   background-color: white;
   color: #333;
   display: flex;
@@ -65,6 +66,11 @@ body {
   background-color: #c7c5be;
   border-radius: 5px;
   margin-left: 15px;
+  height: ao;
+}
+
+#navBttonMap {
+  background-color: #a2a3a3;
 }
 
 .nav-button-active {
@@ -99,9 +105,8 @@ main {
 
 /* キャッチコピー様式 */
 .catchcopy {
-  height: 720px;
   width: 100%;
-  background-image: url("../assets/img/home/main.png");
+  /* background-image: url("../assets/img/home/main.png"); */
   background-size: cover;
   background-position: center;
   display: flex;
@@ -113,18 +118,61 @@ main {
 .catchcopy-video {
   z-index: -1;
 }
+/* 确保容器占据浏览器的宽度 */
+.catchcopy-video {
+  width: 100vw; /* 100% 的视口宽度 */
+  overflow: hidden; /* 防止溢出 */
+}
 
-.catchcopy p {
-  font-size: 38px;
+.catchcopy-video video {
+  width: 100%; /* 视频宽度占满容器 */
+  height: auto; /* 高度按比例调整 */
+  display: block; /* 移除视频自带的内边距和边框 */
+}
+
+/* 确保视频容器占据视口宽度 */
+.catchcopy-video {
+  position: relative; /* 为子元素定位做基础 */
+  width: 100vw; /* 100% 的视口宽度 */
+  overflow: hidden;
+}
+
+/* 视频全屏显示并保持比例 */
+.catchcopy-video video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 文本定位到视频上下居中，靠左对齐 */
+.catchcopy-text div {
+  width: 800px;
+  height: auto;
+}
+.catchcopy-text {
+  position: absolute;
+  top: 40%; /* 距离顶部 50%，实现垂直居中 */
+  left: 0; /* 靠页面左对齐 */
+  transform: translateY(-50%); /* 仅垂直方向居中 */
+  color: white; /* 文本颜色为白色，确保可见 */
+  font-weight: bold; /* 使文字加粗 */
+  z-index: 1; /* 确保文本在视频前面 */
+  pointer-events: none; /* 让鼠标事件透过文本，不干扰视频 */
+  text-align: left;
+  gap: 1em; /* 子元素间距 */
+}
+
+/* 每行文字样式 */
+.catchcopy-text p {
+  display: inline-block;
+  padding: 0px 5px 0px; /* 增加内边距 */
+  margin: 0.5em;
+  font-size: 53px; /* 调整字体大小 */
   font-optical-sizing: auto;
   color: white;
   font-weight: 800;
-  font-style: normal;
-}
-
-.catchcopy div {
-  font-size: 38px;
-  color: white;
+  background-color: #181818; /* 黑色背景 */
+  border-radius: 4px; /* 可选：添加圆角 */
 }
 
 /* scroll動画の様式 */
@@ -286,44 +334,4 @@ footer {
   .navbar nav ul li a {
     font-size: 50%;
   }
-}
-
-/* クレジットページ */
-.credit h2 {
-  width: 112px;
-  height: 58px;
-  font-size: 28px;
-  color: #0053e1;
-  text-align: center;
-  margin-bottom: 105px;/*間違ってるかも*/
-}
-/* 見出しの下線 */
-.credit h2::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -20px;
-  display: inline-block;
-  width: 40px;
-  height: 4px;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  border-color: #0053e1;
-  margin: 15px;
-}
-.credit h3 {
-  font-size: 18px;
-  text-align: center;
-}
-.credit p {
-  width: 309px;
-  height: auto;
-  font-size: 16px;
-  text-align: left;
-}
-
-.concept-discription {
-  display: flex;
-  align-items: center;
-  margin-bottom: 255px;
 }
