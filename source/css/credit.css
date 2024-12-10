@@ -1,39 +1,46 @@
 /* クレジットページ */
+ .credit {
+  display: inline-block;
+  align-items: center;
+}
 .credit h2 {
   width: 112px;
   height: 58px;
   font-size: 28px;
   color: #0053e1;
-  text-align: center;
-  margin-bottom: 105px; /*間違ってるかも*/
-}
-/* 見出しの下線 */
-.credit h2::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -20px;
-  display: inline-block;
-  width: 40px;
-  height: 4px;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  border-color: #0053e1;
-  margin: 15px;
-}
-.credit h3 {
-  font-size: 18px;
-  text-align: center;
-}
-.credit p {
-  width: 309px;
-  height: auto;
-  font-size: 16px;
-  text-align: left;
+  margin-top: 45px;
+  margin-bottom: 65px; 
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: solid 3.5px;
 }
 
 .concept-discription {
   display: flex;
   align-items: center;
   margin-bottom: 255px;
+  color: black;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.credit h3 {
+  font-size: 18px;
+  text-align: center;
+  margin: 20px;
+  
+}
+.credit p {
+  font-size: 16px;
+  text-align: left;
+  margin: 10px;
+}
+.concept-item {
+  width: 320px;
+  /* flex-wrap: wrap; */
+  /*width: 350px;*/
 }
