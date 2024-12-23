@@ -44,3 +44,16 @@
   /* flex-wrap: wrap; */
   /*width: 350px;*/
 }
+
+/* WE ARE ST4MP */
+.member h2 {
+  width: 204px;
+  height: 58px;
+  font-size: 28px;
+  color: #0053e1;
+  margin-top: 45px;
+  margin-bottom: 65px; 
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: solid 3.5px;
+}
