@@ -2,64 +2,345 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>IDtree~情報デザインとは~</title>
-    <link rel="icon" href="../assets/img/ST4MP_icon.svg" type="image/svg/png" />
-    <meta
-      name="description"
-      content="「情報デザイン」について初心者にも分かりやすく解説するサイトです。実際にある情報デザインの事例をまとめたページも用意しています。"
-    />
-    <meta
-      name="keywords"
-      content="情報デザイン,情報デザインの歴史,デザイン情報"
-    />
-    <!-- css引用 -->
-    <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/map.css" />
-    <!-- js引用 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.0/gsap.min.js"></script>
-    <script src="../js/map.js"></script>
-    <!-- js引用終わり -->
+    <title>d3.js CSV Grouped Nodes</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .toolbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        background-color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .toolbar button,
+      .toolbar select {
+        margin: 0 10px;
+        padding: 10px 20px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #555;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .toolbar button:hover {
+        background-color: #777;
+      }
+
+      svg {
+        background-color: #f0f0f0;
+        margin-top: 50px; /* 留出工具栏的空间 */
+      }
+
+      .node-container {
+        width: 180px;
+        height: 250px;
+        border-radius: 20px;
+        background-color: #fff;
+        text-align: center;
+        font-size: 14px;
+        color: #333;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+
+      .node-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .node-container.center {
+        width: 100px;
+        height: 100px;
+        background-color: #000;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .item-pic {
+        width: 100%;
+        height: 60%;
+        object-fit: cover;
+      }
+
+      #item-show {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 700px;
+        height: 500px;
+        background-color: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        z-index: 1000;
+        padding: 20px;
+        display: none;
+        overflow: auto;
+      }
+
+      #item-show .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        cursor: pointer;
+      }
+
+      #item-show .close-btn:hover {
+        background-color: #555;
+      }
+
+      #item-show img {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+    </style>
   </head>
-
   <body>
-    <header class="navbar">
-      <!-- ページのLOGO -->
-      <div>
-        <a href="../index.html"
-          ><img
-            src="../assets/img/ST4MP_logo.svg"
-            alt="logo"
-            width="100px"
-            height="200px"
-        /></a>
-      </div>
-      <!-- ナビゲーションバー開始 -->
-      <nav>
-        <ul>
-          <li class="nav-button-active"><a href="#">発見ページ</a></li>
-          <li class="nav-button">
-            <a href="history.html">情報デザインの歴史</a>
-          </li>
-          <li class="nav-button"><a href="credit.html">サイトについて</a></li>
-        </ul>
-      </nav>
-      <!-- ナビゲーションバー終了 -->
-    </header>
+    <!-- 工具栏 -->
+    <div class="toolbar">
+      <button data-action="reload">リセット</button>
+      <button data-action="zoomIn">拡大</button>
+      <button data-action="zoomOut">縮小</button>
+      <select id="viewMode">
+        <option value="">ノーマル</option>
+        <option value="genre">ジャンルー別</option>
+        <option value="region">地域別</option>
+        <option value="year">年代順</option>
+      </select>
+    </div>
 
-    <!-- map -->
-    <main>
-      <div class="container" id="container"></div>
-      <div class="“item-show”" id="item-show">
-        <h2>Item Details</h2>
-        <p id="item-content"></p>
-      </div>
-    </main>
+    <!-- SVG 画布 -->
+    <svg width="1800" height="1000"></svg>
 
-    <!-- クレジット -->
-    <footer>
-      <p>&copy; 2024 ST4MP</p>
-    </footer>
+    <!-- Item Show -->
+    <div id="item-show"></div>
+
+    <script>
+      const csvPath = "../assets/data.csv";
+      const svg = d3.select("svg");
+      const zoomLayer = svg.append("g");
+      let zoom = d3
+        .zoom()
+        .scaleExtent([0.1, 5])
+        .on("zoom", ({ transform }) => {
+          zoomLayer.attr("transform", transform);
+        });
+
+      svg.call(zoom);
+
+      d3.csv(csvPath).then((rows) => {
+        const nodes = rows.map((row, index) => ({
+          id: row.id || index,
+          title: row.title || "No Title",
+          genre: row[Object.keys(row)[7]],
+          region: row[Object.keys(row)[8]],
+          year: parseInt(row[Object.keys(row)[9]], 10),
+          imagePath: row.imagePath || "https://via.placeholder.com/180x150",
+        }));
+
+        let links = [];
+
+        const simulation = d3
+          .forceSimulation(nodes)
+          .force(
+            "link",
+            d3
+              .forceLink(links)
+              .id((d) => d.id)
+              .distance((d) => (d.source.isCenter ? 400 : 400))
+          )
+          .force("charge", d3.forceManyBody().strength(-100))
+          .force(
+            "center",
+            d3.forceCenter(svg.attr("width") / 2, svg.attr("height") / 2)
+          );
+
+        const link = zoomLayer
+          .append("g")
+          .selectAll("line")
+          .data(links)
+          .enter()
+          .append("line")
+          .attr("stroke", "#999")
+          .attr("stroke-width", 2);
+
+        const itemShow = document.getElementById("item-show");
+
+        function showItemDetails(item) {
+          itemShow.innerHTML = `
+            <button class="close-btn">关闭</button>
+            <img src="${item.imagePath}" alt="${item.title}" />
+            <h2>${item.title}</h2>
+            <p><strong>ジャンル:</strong> ${item.genre || "不明"}</p>
+            <p><strong>地域:</strong> ${item.region || "不明"}</p>
+            <p><strong>年代:</strong> ${item.year || "不明"}</p>
+          `;
+          itemShow.style.display = "block";
+
+          document
+            .querySelector("#item-show .close-btn")
+            .addEventListener("click", () => {
+              itemShow.style.display = "none";
+            });
+        }
+
+        const node = zoomLayer
+          .selectAll("foreignObject")
+          .data(nodes)
+          .enter()
+          .append("foreignObject")
+          .attr("width", 180)
+          .attr("height", 250)
+          .call(
+            d3
+              .drag()
+              .on("start", dragStarted)
+              .on("drag", dragged)
+              .on("end", dragEnded)
+          )
+          .html((d) =>
+            d.isCenter
+              ? `<div class="node-container center">${d.id.replace(
+                  "-center",
+                  ""
+                )}</div>`
+              : `
+            <div class="node-container" title="${d.title}">
+              <img class="item-pic" src="${d.imagePath}" onerror="this.src='https://via.placeholder.com/180x150';">
+              <h2>${d.title}</h2>
+            </div>`
+          )
+          .on("click", (event, d) => {
+            showItemDetails(d);
+          });
+
+        simulation.on("tick", () => {
+          link
+            .attr("x1", (d) => d.source.x)
+            .attr("y1", (d) => d.source.y)
+            .attr("x2", (d) => d.target.x)
+            .attr("y2", (d) => d.target.y);
+
+          node.attr("x", (d) => d.x - 90).attr("y", (d) => d.y - 125);
+        });
+
+        function dragStarted(event, d) {
+          if (!event.active) simulation.alphaTarget(0.3).restart();
+          d.fx = d.x;
+          d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+          d.fx = event.x;
+          d.fy = event.y;
+        }
+
+        function dragEnded(event, d) {
+          if (!event.active) simulation.alphaTarget(0);
+          d.fx = null;
+          d.fy = null;
+        }
+
+        function groupAndLink(nodes, groupByFn) {
+          const groups = d3.group(nodes, groupByFn);
+          const links = [];
+          groups.forEach((group) => {
+            for (let i = 1; i < group.length; i++) {
+              links.push({ source: group[i - 1].id, target: group[i].id });
+            }
+          });
+          return links;
+        }
+
+        function updateLinksByMode(mode) {
+          links = [];
+          if (mode === "genre") {
+            // 清空中心节点
+            const centerNodes = new Map();
+
+            // 为每个分类组创建中心节点
+            nodes.forEach((node) => {
+              if (!centerNodes.has(node.genre)) {
+                const centerNode = {
+                  id: `${node.genre}-center`,
+                  isCenter: true,
+                };
+                nodes.push(centerNode);
+                centerNodes.set(node.genre, centerNode);
+              }
+              links.push({
+                source: centerNodes.get(node.genre).id,
+                target: node.id,
+              });
+            });
+          } else if (mode === "region") {
+            links = groupAndLink(nodes, (d) => d.region);
+          } else if (mode === "year") {
+            const yearSorted = nodes
+              .filter((d) => d.year)
+              .sort((a, b) => a.year - b.year);
+            for (let i = 1; i < yearSorted.length; i++) {
+              links.push({
+                source: yearSorted[i - 1].id,
+                target: yearSorted[i].id,
+              });
+            }
+          }
+
+          simulation.nodes(nodes);
+          simulation.force(
+            "link",
+            d3
+              .forceLink(links)
+              .id((d) => d.id)
+              .distance((d) => (d.source.isCenter ? 300 : 300))
+          );
+          simulation.alpha(1).restart();
+        }
+
+        document
+          .getElementById("viewMode")
+          .addEventListener("change", (event) => {
+            updateLinksByMode(event.target.value);
+          });
+
+        document.querySelectorAll(".toolbar button").forEach((button) => {
+          button.addEventListener("click", () => {
+            const action = button.getAttribute("data-action");
+            if (action === "reload") location.reload();
+            else if (action === "zoomIn")
+              svg.transition().call(zoom.scaleBy, 1.2);
+            else if (action === "zoomOut")
+              svg.transition().call(zoom.scaleBy, 0.8);
+          });
+        });
+      });
+    </script>
   </body>
 </html>
