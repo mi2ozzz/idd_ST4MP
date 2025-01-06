@@ -291,10 +291,11 @@ main {
   align-items: center;
   justify-content: center;
   text-align: center;
+  font-size: 50px;
 }
 
 .discover p {
-  font-size: 28px;
+  font-size: 50px;
   font-weight: 900;
   color: #333;
   text-align: center;
